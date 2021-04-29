@@ -1,6 +1,8 @@
 //Set current time to header and check time blocks to color them
 var timeEl = $("#currentDay");
 clockUpdater();
+//Load data from local storage on start
+loadData();
 
 //Set interval to constanstly update time
 var clock = setInterval(clockUpdater, 1000)
@@ -43,19 +45,38 @@ function saveClick(event){
 
     localStorage.setItem(time, text);
 
+    alert("Task has been saved");
+
+}
+
+//Clear button click listener
+$(".clearBtn").on("click", clearClick);
+
+//Save input to local storage
+function clearClick(event){
+    
+
+    var clear = confirm("Are you sure you want to clear your day calendar");
+
+    if(clear){
+        localStorage.clear();
+        loadData();
+    }
+    
 }
 
 //Load data from local storage to each time block
-$('#9 .description').val(localStorage.getItem('9'));
-$('#10 .description').val(localStorage.getItem('10'));
-$('#11 .description').val(localStorage.getItem('11'));
-$('#12 .description').val(localStorage.getItem('12'));
-$('#13 .description').val(localStorage.getItem('13'));
-$('#14 .description').val(localStorage.getItem('14'));
-$('#15 .description').val(localStorage.getItem('15'));
-$('#16 .description').val(localStorage.getItem('16'));
-$('#17 .description').val(localStorage.getItem('17'));
-
+function loadData(){ 
+    $('#9 .description').val(localStorage.getItem('9'));
+    $('#10 .description').val(localStorage.getItem('10'));
+    $('#11 .description').val(localStorage.getItem('11'));
+    $('#12 .description').val(localStorage.getItem('12'));
+    $('#13 .description').val(localStorage.getItem('13'));
+    $('#14 .description').val(localStorage.getItem('14'));
+    $('#15 .description').val(localStorage.getItem('15'));
+    $('#16 .description').val(localStorage.getItem('16'));
+    $('#17 .description').val(localStorage.getItem('17'));
+}
 
 
 
