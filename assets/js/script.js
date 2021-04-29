@@ -1,5 +1,6 @@
 //Set current time to header and check time blocks to color them
 var timeEl = $("#currentDay");
+var currentTime;
 clockUpdater();
 //Load data from local storage on start
 loadData();
@@ -43,9 +44,12 @@ function saveClick(event){
     var text = $(event.target).siblings(".description").val();
     var time = $(event.target).parent().attr("id");
 
-    localStorage.setItem(time, text);
-
-    alert("Task has been saved");
+    if(text === "")
+        alert("Type text into the field to save it on the calendar")
+    else{
+        localStorage.setItem(time, text);
+        alert("Task has been saved");
+    }
 
 }
 
@@ -55,7 +59,6 @@ $(".clearBtn").on("click", clearClick);
 //Save input to local storage
 function clearClick(event){
     
-
     var clear = confirm("Are you sure you want to clear your day calendar");
 
     if(clear){
